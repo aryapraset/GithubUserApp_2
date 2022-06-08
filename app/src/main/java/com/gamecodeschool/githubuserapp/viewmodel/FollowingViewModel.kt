@@ -5,7 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gamecodeschool.githubuserapp.api.ApiConfig
-import com.gamecodeschool.githubuserapp.apiresponse.UserGitResponse
 import com.gamecodeschool.githubuserapp.apiresponse.UserItem
 import retrofit2.Call
 import retrofit2.Callback

@@ -28,12 +28,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         adapter = ListUserAdapter(list)
-        adapter.notifyDataSetChanged()
 
         adapter.setOnItemClickCallback(object : ListUserAdapter.OnItemClickCallback{
             override fun onItemClicked(data: UserItem) {
-                Intent(this@MainActivity, DetailUser::class.java).also {
-                    it. putExtra(DetailUser.DETAIL_USER, data.login)
+                Intent(this@MainActivity, DetailUserActivity::class.java).also {
+                    it. putExtra(DetailUserActivity.DETAIL_USER, data.login)
                     startActivity(it)
                 }
             }

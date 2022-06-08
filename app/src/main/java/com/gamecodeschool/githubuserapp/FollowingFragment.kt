@@ -22,17 +22,16 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        dtUser = DetailUser.DT_USER
+        dtUser = DetailUserActivity.DT_USER
         Log.d("detail", dtUser)
         _binding = FragmentFollowingBinding.bind(view)
 
         adapter = ListUserAdapter(list)
-        adapter.notifyDataSetChanged()
 
         showLoading(true)
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowingViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[FollowingViewModel::class.java]
         viewModel.setFollowingDetail(dtUser)
-        viewModel.detailFollowingGitUser.observe(viewLifecycleOwner, {
+        viewModel.detailFollowingGitUser.observe(viewLifecycleOwner) {
             if(it!=null){
                 adapter.setList(it as ArrayList<UserItem>)
                 showLoading(state = false)
@@ -40,7 +39,7 @@ class FollowingFragment : Fragment(R.layout.fragment_following) {
                 binding.ftUser.setHasFixedSize(true)
                 binding.ftUser.adapter = adapter
             }
-        })
+        }
         viewModel.loadingListUser.observe(viewLifecycleOwner,{
             showLoading(it)
         })

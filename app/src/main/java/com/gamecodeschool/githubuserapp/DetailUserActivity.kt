@@ -6,29 +6,17 @@ import android.util.Log
 import androidx.activity.viewModels
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.gamecodeschool.githubuserapp.adapter.SectionPagerAdapter
 import com.gamecodeschool.githubuserapp.databinding.ActivityDetailUserBinding
 import com.gamecodeschool.githubuserapp.viewmodel.DetailUserViewModel
-import com.gamecodeschool.githubuserapp.viewmodel.FollowerViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
-class DetailUser : AppCompatActivity() {
+class DetailUserActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetailUserBinding
     private val viewModel: DetailUserViewModel by viewModels()
 
-
-    companion object{
-        var DT_USER = "dtUser"
-        const val DETAIL_USER = "detail_user"
-        @StringRes
-        private val TAB_TITLES = intArrayOf(
-            R.string.tab_text_1,
-            R.string.tab_text_2
-        )
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailUserBinding.inflate(layoutInflater)
@@ -61,13 +49,22 @@ class DetailUser : AppCompatActivity() {
                 .load(it.avatarUrl)
                 .centerCrop()
                 .into(binding.imgPhoto)
-            binding.repository.text = "${it.publicRepos} Repository"
+            binding.repository.text = StringBuilder().append(it.publicRepos).append(" Repository")
             binding.location.text = it.location
             binding.company.text = it.company
-            binding.follower.text = "${it.followers} Followers"
-            binding.following.text = "${it.following} Following"
+            binding.follower.text = StringBuilder().append(it.followers).append(" Follower")
+            binding.following.text = StringBuilder().append(it.following).append(" Following")
 
         }
 
+    }
+    companion object{
+        var DT_USER = "dtUser"
+        const val DETAIL_USER = "detail_user"
+        @StringRes
+        private val TAB_TITLES = intArrayOf(
+            R.string.tab_text_1,
+            R.string.tab_text_2
+        )
     }
 }

@@ -13,7 +13,6 @@ import retrofit2.Response
 class DetailUserViewModel: ViewModel() {
 
     private val _loadingListUser = MutableLiveData<Boolean>()
-    val loadingListUser: LiveData<Boolean> = _loadingListUser
 
     private val _detailGitUser = MutableLiveData<UserDetailGitResponse>()
     val detailGitUser: LiveData<UserDetailGitResponse> = _detailGitUser

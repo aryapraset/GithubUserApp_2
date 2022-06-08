@@ -19,9 +19,8 @@ class ListUserAdapter(list: ArrayList<UserItem>) : RecyclerView.Adapter<ListUser
     fun setList(userGit: ArrayList<UserItem>){
         list.clear()
         list.addAll(userGit)
-        notifyDataSetChanged()
     }
-    inner class UserViewHolder(val binding: DataTabelBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class UserViewHolder(private val binding: DataTabelBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(userItem: UserItem){
             binding.root.setOnClickListener {
                 onItemClickCallback?.onItemClicked(userItem)
