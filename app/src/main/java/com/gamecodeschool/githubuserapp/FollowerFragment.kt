@@ -40,9 +40,9 @@ class FollowerFragment : Fragment(R.layout.fragment_follower){
                 binding.ftUser.adapter = adapter
             }
         }
-        viewModel.loadingListUser.observe(viewLifecycleOwner,{
+        viewModel.loadingListUser.observe(viewLifecycleOwner){
             showLoading(it)
-        })
+        }
     }
 
     override fun onDestroyView() {

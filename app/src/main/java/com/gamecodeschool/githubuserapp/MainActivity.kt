@@ -4,11 +4,10 @@ package com.gamecodeschool.githubuserapp
 import android.app.SearchManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.isEmpty
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gamecodeschool.githubuserapp.adapter.ListUserAdapter
@@ -38,8 +37,8 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
-        viewModel.gitUser.observe(this, {
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[UserViewModel::class.java]
+        viewModel.gitUser.observe(this) {
             if(it!=null){
                 adapter.setList(it as ArrayList<UserItem>)
                 showLoading(state = false)
@@ -47,10 +46,10 @@ class MainActivity : AppCompatActivity() {
                 binding.ftUser.setHasFixedSize(true)
                 binding.ftUser.adapter = adapter
             }
-        })
-        viewModel.loadingListUser.observe(this,{
+        }
+        viewModel.loadingListUser.observe(this){
             showLoading(it)
-        })
+        }
 
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
         val searchView = binding.searchView
@@ -72,15 +71,6 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-    }
-
-    private fun searchUser(gitUser: List<UserItem>) {
-        binding.apply {
-            val search = searchView
-            if (search.isEmpty())
-                return showLoading(true)
-            viewModel.setGitUser(search.toString())
-        }
     }
 
     private fun showLoading(state: Boolean){
