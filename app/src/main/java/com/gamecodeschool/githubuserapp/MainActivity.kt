@@ -38,8 +38,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(
-            UserViewModel::class.java)
+        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(UserViewModel::class.java)
         viewModel.gitUser.observe(this, {
             if(it!=null){
                 adapter.setList(it as ArrayList<UserItem>)
