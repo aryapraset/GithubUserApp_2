@@ -22,4 +22,7 @@ data class UserItem(
 	@field:SerializedName("login")
 	val login: String,
 
+	@field:SerializedName("id")
+	val id: Int
+
 )
